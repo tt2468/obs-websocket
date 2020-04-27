@@ -19,6 +19,44 @@ bool isTextFreeType2Source(const QString& sourceKind)
 }
 
 /**
+ * Set the text of a text-freetype2 or obs-text source.
+ *
+ * @param {String} `source` Source name.
+ * @param {String} `text` Desired text to set.
+ *
+ * @api requests
+ * @name SetText
+ * @category sources
+ * @since 4.9.0
+ */
+RpcResponse WSRequestHandler::SetText(const RpcRequest& request)
+ {
+        if (!request.hasField("source") || !request.hasField("text")) {
+                return request.failed("missing request parameters");
+        }
+
+        QString sourceName = obs_data_get_string(request.parameters(), "source");
+        QString sourceText = obs_data_get_string(request.parameters(), "text");
+
+        if (sourceName.isEmpty() || sourceText.isEmpty()) {
+                return request.failed("invalid request parameters");
+        }
+
+        OBSSourceAutoRelease source = obs_get_source_by_name(sourceName.toUtf8());
+        if (!source) {
+                return request.failed("specified source doesn't exist");
+        }
+
+        QString sourceKind = obs_source_get_id(source);
+        if (!isTextGDIPlusSource(sourceKind) || !isTextFreeType2Source(sourceKind)) {
+                return request.failed("not a text source");
+        }
+
+        obs_source_set_text(source, sourceText.toUtf8());
+        return request.success();
+}
+
+/**
 * List all sources available in the running OBS instance
 *
 * @return {Array<Object>} `sources` Array of sources
