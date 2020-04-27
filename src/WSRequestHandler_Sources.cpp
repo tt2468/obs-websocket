@@ -19,7 +19,7 @@ bool isTextFreeType2Source(const QString& sourceKind)
 }
 
 /**
- * Set the text of a text-freetype2 or obs-text source.
+ * Set the text of a text-freetype2 or obs-text source. This method should be preferred to using `SetSourceSettings` when possible.
  *
  * @param {String} `source` Source name.
  * @param {String} `text` Desired text to set.
