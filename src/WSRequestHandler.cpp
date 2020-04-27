@@ -99,6 +99,7 @@ const QHash<QString, RpcMethodHandler> WSRequestHandler::messageMap {
 	{ "SetSourceSettings", &WSRequestHandler::SetSourceSettings },
 	{ "TakeSourceScreenshot", &WSRequestHandler::TakeSourceScreenshot },
 
+        { "SetText", &WSRequestHandler::SetText },
 	{ "GetSourceFilters", &WSRequestHandler::GetSourceFilters },
 	{ "GetSourceFilterInfo", &WSRequestHandler::GetSourceFilterInfo },
 	{ "AddFilterToSource", &WSRequestHandler::AddFilterToSource },

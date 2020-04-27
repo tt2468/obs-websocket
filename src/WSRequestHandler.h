@@ -114,6 +114,7 @@ class WSRequestHandler {
 		RpcResponse SetSourceSettings(const RpcRequest&);
 		RpcResponse TakeSourceScreenshot(const RpcRequest&);
 
+                RpcResponse SetText(const RpcRequest&);
 		RpcResponse GetSourceFilters(const RpcRequest&);
 		RpcResponse GetSourceFilterInfo(const RpcRequest&);
 		RpcResponse AddFilterToSource(const RpcRequest&);
