@@ -48,7 +48,7 @@ RpcResponse WSRequestHandler::SetText(const RpcRequest& request)
         }
 
         QString sourceKind = obs_source_get_id(source);
-        if (!isTextGDIPlusSource(sourceKind) || !isTextFreeType2Source(sourceKind)) {
+        if (!isTextGDIPlusSource(sourceKind) && !isTextFreeType2Source(sourceKind)) {
                 return request.failed("not a text source");
         }
 
